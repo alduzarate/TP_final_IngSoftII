@@ -1,0 +1,4 @@
+swipl
+consult('setlog.pl').
+setlog.
+type_check.
