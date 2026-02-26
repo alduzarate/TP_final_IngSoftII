@@ -2,3 +2,11 @@ swipl
 consult('setlog.pl').
 setlog.
 type_check.
+consult("sistemaTorneos.slog")
+(varias veces reset_types para corregir errores)
+esto no anduvo pq se quejaba de que NICarr no tenia declaracion de tipo, bardo con applyTo, un?
+let([NICarr], applyTo(NadadoresInscriptos, Carrera, NICarr), Nadador nin NICarr)
+let([UnionNadadores], un(NICarr, {Nadador}, UnionNadadores), oplus(NadadoresInscriptos, {[Carrera, UnionNadadores]}, NadadoresInscriptos_)) &
+Traduciendo la especificacion me di cuenta ademas de que habia puesto erroneamente:
+c? /∈ dom(nadadoresInscriptos)
+n? /∈ nadadoresInscriptos(c?)

@@ -72,7 +72,14 @@ Torneo
 \end{schema}
 
 \subsection*{Operaciones}
-\subsubsection*{Anotar un nadador a una carrera}
+\subsubsection*{Anotar un nadador a una carrera \protect\footnote{Nota sobre el dominio de aplicación: cuando se asignan los árbitros, no se agrega
+la carrera a $nadadoresInscriptos$ ya que la idea es que esta función solo contenga
+los datos de los inscriptos. En consecuencia, por eso hay dos casos a la hora 
+de inscribir un nadador y uno para devolver al conjunto vacío si se pregunta
+por una carrera que no esté en $nadadoresInscriptos$, ya que es necesario
+que este tipo de fenómenos quede manifiesto. Se podría haber manejado toda la
+información en una sola función y que su conjunto imagen sea un producto cartesiano
+entre $ARBITRO$ y $NADADOR$ pero esta forma me pareció más sencilla.} }
 
 \begin{schema}{InscribirNadadorHayCompetidoresOk}
 \Delta Torneo \\
@@ -93,7 +100,6 @@ c? : CARRERA \\
 \where
 c? \in \dom(arbitrosAsignados) \\
 c? \notin \dom(nadadoresInscriptos) \\
-n? \notin nadadoresInscriptos(c?) \\
 nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto  \{ n? \} \} \\
 arbitrosAsignados' = arbitrosAsignados
 \end{schema}
@@ -122,7 +128,8 @@ arbitrosAsignados' = arbitrosAsignados
 \end{schema}
 
 \begin{zed}
-InscribirNadador \defs InscribirNadadorHayCompetidoresOk \lor InscribirNadadorSinCompetidoresOk \lor NadadorYaInscripto \lor CarreraNoHabilitada
+InscribirNadador \defs InscribirNadadorHayCompetidoresOk \lor InscribirNadadorSinCompetidoresOk \lor NadadorYaInscripto \\
+\lor CarreraNoHabilitada
 \end{zed}
 
 \subsubsection*{Asignar árbitros a una carrera}
@@ -137,13 +144,6 @@ c? \notin \dom(nadadoresInscriptos) \\
 nadadoresInscriptos' = nadadoresInscriptos \\
 arbitrosAsignados' = arbitrosAsignados \cup \{c? \mapsto ca? \}
 \end{schema}
-
-Nota sobre el dominio de aplicación: cuando se asignan los árbitros, no se agrega
-la carrera a $nadadoresInscriptos$ ya que la idea es que esta función solo contenga
-los datos de los inscriptos. En consecuencia, por eso hay dos casos a la hora 
-de inscribir un nadador y uno para devolver al conjunto vacío si se pregunta
-por una carrera que no esté en $nadadoresInscriptos$, ya que es necesario
-que este tipo de fenómenos quede manifiesto.
 
 \begin{schema}{CarreraYaHabilitada}
 \Xi Torneo \\
@@ -206,7 +206,27 @@ control de tipos.
 
 \section*{Traducción de la especificación Z a un programa \{log\}}
 
-La traducción se puede encontrar en el archivo \verb|sistemaTorneos.slog|, la cual fue aceptada satisfactoriamente
+Dado que hemos dado uso a algunos conjuntos en lugar de tipos para algunas
+variables de estado, resulta conveniente normalizar la especificación Z
+antes de realizar la traducción. Habría que modificar el tipo esquema 
+eliminando el uso de funciones parciales:
+
+\begin{schema}{Torneo}
+nadadoresInscriptos : CARRERA \rel \power NADADOR \\
+arbitrosAsignados : CARRERA \rel \power ARBITRO
+\end{schema}
+
+Y agregando dichas restricciones en el invariante:
+
+\begin{schema}{TorneoInv}
+Torneo
+\where
+\dom(nadadoresInscriptos) \subseteq \dom(arbitrosAsignados) \\
+nadadoresInscriptos \in CARRERA \pfun \power NADADOR \\
+arbitrosAsignados \in CARRERA \pfun \power ARBITRO
+\end{schema}
+
+La traducción a $\{log\}$ se puede encontrar en el archivo \verb|sistemaTorneos.slog|, la cual fue aceptada satisfactoriamente
 por el typechecker.
 
 \section*{Ejecución de simulaciones}
