@@ -74,7 +74,7 @@ Torneo
 \subsection*{Operaciones}
 \subsubsection*{Anotar un nadador a una carrera}
 
-\begin{schema}{InscribirNadadorOk}
+\begin{schema}{InscribirNadadorHayCompetidoresOk}
 \Delta Torneo \\
 n? : NADADOR \\
 c? : CARRERA \\
@@ -83,6 +83,18 @@ c? \in \dom(arbitrosAsignados) \\
 c? \in \dom(nadadoresInscriptos) \\
 n? \notin nadadoresInscriptos(c?) \\
 nadadoresInscriptos' = nadadoresInscriptos \oplus \{c? \mapsto (nadadoresInscriptos(c?) \cup \{ n? \} ) \} \\
+arbitrosAsignados' = arbitrosAsignados
+\end{schema}
+
+\begin{schema}{InscribirNadadorSinCompetidoresOk}
+\Delta Torneo \\
+n? : NADADOR \\
+c? : CARRERA \\
+\where
+c? \in \dom(arbitrosAsignados) \\
+c? \notin \dom(nadadoresInscriptos) \\
+n? \notin nadadoresInscriptos(c?) \\
+nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto  \{ n? \} \} \\
 arbitrosAsignados' = arbitrosAsignados
 \end{schema}
 
@@ -110,7 +122,7 @@ arbitrosAsignados' = arbitrosAsignados
 \end{schema}
 
 \begin{zed}
-InscribirNadador \defs InscribirNadadorOk \lor NadadorYaInscripto \lor CarreraNoHabilitada
+InscribirNadador \defs InscribirNadadorHayCompetidoresOk \lor InscribirNadadorSinCompetidoresOk \lor NadadorYaInscripto \lor CarreraNoHabilitada
 \end{zed}
 
 \subsubsection*{Asignar árbitros a una carrera}
@@ -122,14 +134,16 @@ c? : CARRERA \\
 \where
 c? \notin \dom(arbitrosAsignados) \\
 c? \notin \dom(nadadoresInscriptos) \\
-nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto \emptyset \} \\
+nadadoresInscriptos' = nadadoresInscriptos \\
 arbitrosAsignados' = arbitrosAsignados \cup \{c? \mapsto ca? \}
 \end{schema}
 
-Nota sobre el dominio de aplicación: cuando se asignan los árbitros, también se agrega la carrera al
-conjunto $nadadoresInscriptos$, ya que es posible que termine habiendo alguna carrera en el torneo que no
-tenga nadadores inscriptos, y de igual manera debe mostrarse en el listado de carreras junto a las
-demás para que quede manifiesto este fenómeno.
+Nota sobre el dominio de aplicación: cuando se asignan los árbitros, no se agrega
+la carrera a $nadadoresInscriptos$ ya que la idea es que esta función solo contenga
+los datos de los inscriptos. En consecuencia, por eso hay dos casos a la hora 
+de inscribir un nadador y uno para devolver al conjunto vacío si se pregunta
+por una carrera que no esté en $nadadoresInscriptos$, ya que es necesario
+que este tipo de fenómenos quede manifiesto.
 
 \begin{schema}{CarreraYaHabilitada}
 \Xi Torneo \\
@@ -137,7 +151,6 @@ ca? : \power ARBITRO \\
 c? : CARRERA \\
 \where
 c? \in \dom(arbitrosAsignados) \\
-c? \in \dom(nadadoresInscriptos) \\
 nadadoresInscriptos' = nadadoresInscriptos \\
 arbitrosAsignados' = arbitrosAsignados
 \end{schema}
@@ -148,7 +161,7 @@ AsignarArbitros \defs AsignarArbitrosOk \lor CarreraYaHabilitada
 
 \subsubsection*{Mostrar los nadadores inscriptos y árbitros de una carrera}
 
-\begin{schema}{MostrarInfoCarreraOk}
+\begin{schema}{MostrarInfoCarreraHayInscriptosOk}
 \Xi Torneo \\
 c? : CARRERA \\
 ni! : \power NADADOR \\
@@ -157,6 +170,18 @@ aa! : \power ARBITRO \\
 c? \in \dom(arbitrosAsignados) \\
 c? \in \dom(nadadoresInscriptos) \\
 ni! = nadadoresInscriptos(c?) \\
+aa! = arbitrosAsignados(c?)
+\end{schema}
+
+\begin{schema}{MostrarInfoCarreraSinInscriptosOk}
+\Xi Torneo \\
+c? : CARRERA \\
+ni! : \power NADADOR \\
+aa! : \power ARBITRO \\
+\where
+c? \in \dom(arbitrosAsignados) \\
+c? \notin \dom(nadadoresInscriptos) \\
+ni! = \emptyset \\
 aa! = arbitrosAsignados(c?)
 \end{schema}
 
@@ -173,7 +198,7 @@ aa! = \emptyset
 \end{schema}
 
 \begin{zed}
-MostrarInfoCarrera \defs MostrarInfoCarreraOk \lor NoHayInfoCarrera
+MostrarInfoCarrera \defs MostrarInfoCarreraHayInscriptosOk \lor MostrarInfoCarreraSinInscriptosOk \lor NoHayInfoCarrera
 \end{zed}
 
 No era requerido pero adicionalmente se pasó la especificación por \verb|z-eves| y pasó exitosamente el
