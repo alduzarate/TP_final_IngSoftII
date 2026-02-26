@@ -68,7 +68,7 @@ asignados.
 \begin{schema}{TorneoInv}
 Torneo
 \where
-dom(nadadoresInscriptos) \subseteq dom(arbitrosAsignados)
+\dom(nadadoresInscriptos) \subseteq \dom(arbitrosAsignados)
 \end{schema}
 
 \subsection*{Operaciones}
@@ -79,10 +79,10 @@ dom(nadadoresInscriptos) \subseteq dom(arbitrosAsignados)
 n? : NADADOR \\
 c? : CARRERA \\
 \where
-c? \in \dom arbitrosAsignados \\
-c? \in \dom nadadoresInscriptos \\
+c? \in \dom(arbitrosAsignados) \\
+c? \in \dom(nadadoresInscriptos) \\
 n? \notin nadadoresInscriptos(c?) \\
-nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto nadadoresInscriptos(c?) \cup n?\} \\
+nadadoresInscriptos' = nadadoresInscriptos \oplus \{c? \mapsto (nadadoresInscriptos(c?) \cup \{ n? \} ) \} \\
 arbitrosAsignados' = arbitrosAsignados
 \end{schema}
 
@@ -91,8 +91,8 @@ arbitrosAsignados' = arbitrosAsignados
 n? : NADADOR \\
 c? : CARRERA \\
 \where
-c? \in \dom arbitrosAsignados \\
-c? \in \dom nadadoresInscriptos \\
+c? \in \dom(arbitrosAsignados) \\
+c? \in \dom(nadadoresInscriptos) \\
 n? \in nadadoresInscriptos(c?) \\
 nadadoresInscriptos' = nadadoresInscriptos \\
 arbitrosAsignados' = arbitrosAsignados
@@ -103,14 +103,14 @@ arbitrosAsignados' = arbitrosAsignados
 n? : NADADOR \\
 c? : CARRERA \\
 \where
-c? \notin \dom arbitrosAsignados \\
-c? \notin \dom nadadoresInscriptos \\
+c? \notin \dom(arbitrosAsignados) \\
+c? \notin \dom(nadadoresInscriptos) \\
 nadadoresInscriptos' = nadadoresInscriptos \\
 arbitrosAsignados' = arbitrosAsignados
 \end{schema}
 
 \begin{zed}
-InscribirNadador == InscribirNadadorOk \lor NadadorYaInscripto \lor CarreraNoHabilitada
+InscribirNadador \defs InscribirNadadorOk \lor NadadorYaInscripto \lor CarreraNoHabilitada
 \end{zed}
 
 \subsubsection*{Asignar árbitros a una carrera}
@@ -120,8 +120,8 @@ InscribirNadador == InscribirNadadorOk \lor NadadorYaInscripto \lor CarreraNoHab
 ca? : \power ARBITRO \\
 c? : CARRERA \\
 \where
-c? \notin \dom arbitrosAsignados \\
-c? \notin \dom nadadoresInscriptos \\
+c? \notin \dom(arbitrosAsignados) \\
+c? \notin \dom(nadadoresInscriptos) \\
 nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto \emptyset \} \\
 arbitrosAsignados' = arbitrosAsignados \cup \{c? \mapsto ca? \}
 \end{schema}
@@ -136,14 +136,14 @@ demás para que quede manifiesto este fenómeno.
 ca? : \power ARBITRO \\
 c? : CARRERA \\
 \where
-c? \in \dom arbitrosAsignados \\
-c? \in \dom nadadoresInscriptos \\
+c? \in \dom(arbitrosAsignados) \\
+c? \in \dom(nadadoresInscriptos) \\
 nadadoresInscriptos' = nadadoresInscriptos \\
 arbitrosAsignados' = arbitrosAsignados
 \end{schema}
 
 \begin{zed}
-AsignarArbitros == AsignarArbitrosOk \lor CarreraYaHabilitada
+AsignarArbitros \defs AsignarArbitrosOk \lor CarreraYaHabilitada
 \end{zed}
 
 \subsubsection*{Mostrar los nadadores inscriptos y árbitros de una carrera}
@@ -154,10 +154,10 @@ c? : CARRERA \\
 ni! : \power NADADOR \\
 aa! : \power ARBITRO \\
 \where
-c? \in \dom arbitrosAsignados \\
-c? \in \dom nadadoresInscriptos \\
-nadadoresInscriptos! = nadadoresInscriptos(c?) \\
-arbitrosAsignados! = arbitrosAsignados(c?)
+c? \in \dom(arbitrosAsignados) \\
+c? \in \dom(nadadoresInscriptos) \\
+ni! = nadadoresInscriptos(c?) \\
+aa! = arbitrosAsignados(c?)
 \end{schema}
 
 \begin{schema}{NoHayInfoCarrera}
@@ -166,21 +166,25 @@ c? : CARRERA \\
 ni! : \power NADADOR \\
 aa! : \power ARBITRO \\
 \where
-c? \notin \dom arbitrosAsignados \\
-c? \notin \dom nadadoresInscriptos \\
-nadadoresInscriptos! = \emptyset \\
-arbitrosAsignados! = \emptyset
+c? \notin \dom(arbitrosAsignados) \\
+c? \notin \dom(nadadoresInscriptos) \\
+ni! = \emptyset \\
+aa! = \emptyset
 \end{schema}
 
 \begin{zed}
-MostrarInfoCarrera == MostrarInfoCarreraOk \lor NoHayInfoCarrera
+MostrarInfoCarrera \defs MostrarInfoCarreraOk \lor NoHayInfoCarrera
 \end{zed}
+
+No era requerido pero adicionalmente se pasó la especificación por \verb|z-eves| y pasó exitosamente el
+control de tipos. 
 
 \section*{Traducción de la especificación Z a un programa \{log\}}
 
-La traducción se puede encontrar en el archivo \verb|sistemaTorneos.pl|, la cual fue aceptada satisfactoriamente
+La traducción se puede encontrar en el archivo \verb|sistemaTorneos.slog|, la cual fue aceptada satisfactoriamente
 por el typechecker.
 
+\section*{Ejecución de simulaciones}
 
 
 \end{document}
