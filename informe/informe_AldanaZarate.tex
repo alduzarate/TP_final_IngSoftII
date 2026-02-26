@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel} 
+\usepackage{anysize}
+\marginsize{1.5cm}{1.5cm}{1.5cm}{1.5cm}
+\usepackage{amssymb}
+% \usepackage{minted}
+
+\usepackage{z-eves}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{Logo-UNR.png}
+\end{figure}
+
+\title{{\bf Trabajo práctico: Verificación de software} \\ Ingeniería del software II}
+\author{Aldana Zarate}
+\date{Febrero 2026}
+
+\maketitle
+\end{titlepage}
+
+\section*{Descripción del problema: Sistema de inscripciones a torneos de natación}
+Se necesita la creación de un sistema de inscripciones a torneos para la Federación Rosario de Natación. 
+En este sistema se debe poder anotar un nadador a una carrera que ya posea árbitros, 
+asignar árbitros a una carrera 
+y mostrar los nadadores inscriptos y árbitros de una carrera del torneo.
+
+\section*{Designaciones}
+\begin{itemize}
+\item $n$ es un nadador de la FRN $\approx n \in NADADOR$
+\item $a$ es un árbitro de la FRN $\approx a \in ARBITRO$
+\item $c$ es una carrera del torneo $\approx c \in CARRERA$
+\item Conjunto de nadadores inscriptos a una carrera $c \approx nadadoresInscriptos(c)$
+\item Conjunto de árbitros a supervisar una carrera $c \approx arbitrosAsignados(c)$
+\end{itemize}
+
+\section*{Especificación Z}
+\subsection*{Definiciones de tipo \protect\footnote{No fue necesario definir constantes.}}
+
+\begin{zed}
+[NADADOR, ARBITRO, CARRERA]
+\end{zed}
+
+\subsection*{Esquemas de estado}
+
+\begin{schema}{Torneo}
+nadadoresInscriptos : CARRERA \pfun \power NADADOR \\
+arbitrosAsignados : CARRERA \pfun \power ARBITRO
+\end{schema}
+
+\begin{schema}{TorneoInicial}
+Torneo
+\where
+nadadoresInscriptos = \emptyset \\
+arbitrosAsignados = \emptyset
+\end{schema}
+
+\subsection*{Invariante}
+Del requerimiento "se debe poder anotar un nadador a una carrera que ya posea árbitros" tenemos el
+siguiente invariante: un nadador no se puede inscribir a una carrera que todavía no tenga árbitros
+asignados.
+
+\begin{schema}{TorneoInv}
+Torneo
+\where
+dom(nadadoresInscriptos) \subseteq dom(arbitrosAsignados)
+\end{schema}
+
+\subsection*{Operaciones}
+\subsubsection*{Anotar un nadador a una carrera}
+
+\begin{schema}{InscribirNadadorOk}
+\Delta Torneo \\
+n? : NADADOR \\
+c? : CARRERA \\
+\where
+c? \in \dom arbitrosAsignados \\
+c? \in \dom nadadoresInscriptos \\
+n? \notin nadadoresInscriptos(c?) \\
+nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto nadadoresInscriptos(c?) \cup n?\} \\
+arbitrosAsignados' = arbitrosAsignados
+\end{schema}
+
+\begin{schema}{NadadorYaInscripto}
+\Xi Torneo \\
+n? : NADADOR \\
+c? : CARRERA \\
+\where
+c? \in \dom arbitrosAsignados \\
+c? \in \dom nadadoresInscriptos \\
+n? \in nadadoresInscriptos(c?) \\
+nadadoresInscriptos' = nadadoresInscriptos \\
+arbitrosAsignados' = arbitrosAsignados
+\end{schema}
+
+\begin{schema}{CarreraNoHabilitada}
+\Xi Torneo \\
+n? : NADADOR \\
+c? : CARRERA \\
+\where
+c? \notin \dom arbitrosAsignados \\
+c? \notin \dom nadadoresInscriptos \\
+nadadoresInscriptos' = nadadoresInscriptos \\
+arbitrosAsignados' = arbitrosAsignados
+\end{schema}
+
+\begin{zed}
+InscribirNadador == InscribirNadadorOk \lor NadadorYaInscripto \lor CarreraNoHabilitada
+\end{zed}
+
+\subsubsection*{Asignar árbitros a una carrera}
+
+\begin{schema}{AsignarArbitrosOk}
+\Delta Torneo \\
+ca? : \power ARBITRO \\
+c? : CARRERA \\
+\where
+c? \notin \dom arbitrosAsignados \\
+c? \notin \dom nadadoresInscriptos \\
+nadadoresInscriptos' = nadadoresInscriptos \cup \{c? \mapsto \emptyset \} \\
+arbitrosAsignados' = arbitrosAsignados \cup \{c? \mapsto ca? \}
+\end{schema}
+
+Nota sobre el dominio de aplicación: cuando se asignan los árbitros, también se agrega la carrera al
+conjunto $nadadoresInscriptos$, ya que es posible que termine habiendo alguna carrera en el torneo que no
+tenga nadadores inscriptos, y de igual manera debe mostrarse en el listado de carreras junto a las
+demás para que quede manifiesto este fenómeno.
+
+\begin{schema}{CarreraYaHabilitada}
+\Xi Torneo \\
+ca? : \power ARBITRO \\
+c? : CARRERA \\
+\where
+c? \in \dom arbitrosAsignados \\
+c? \in \dom nadadoresInscriptos \\
+nadadoresInscriptos' = nadadoresInscriptos \\
+arbitrosAsignados' = arbitrosAsignados
+\end{schema}
+
+\begin{zed}
+AsignarArbitros == AsignarArbitrosOk \lor CarreraYaHabilitada
+\end{zed}
+
+\subsubsection*{Mostrar los nadadores inscriptos y árbitros de una carrera}
+
+\begin{schema}{MostrarInfoCarreraOk}
+\Xi Torneo \\
+c? : CARRERA \\
+ni! : \power NADADOR \\
+aa! : \power ARBITRO \\
+\where
+c? \in \dom arbitrosAsignados \\
+c? \in \dom nadadoresInscriptos \\
+nadadoresInscriptos! = nadadoresInscriptos(c?) \\
+arbitrosAsignados! = arbitrosAsignados(c?)
+\end{schema}
+
+\begin{schema}{NoHayInfoCarrera}
+\Xi Torneo \\
+c? : CARRERA \\
+ni! : \power NADADOR \\
+aa! : \power ARBITRO \\
+\where
+c? \notin \dom arbitrosAsignados \\
+c? \notin \dom nadadoresInscriptos \\
+nadadoresInscriptos! = \emptyset \\
+arbitrosAsignados! = \emptyset
+\end{schema}
+
+\begin{zed}
+MostrarInfoCarrera == MostrarInfoCarreraOk \lor NoHayInfoCarrera
+\end{zed}
+
+\section*{Traducción de la especificación Z a un programa \{log\}}
+
+La traducción se puede encontrar en el archivo \verb|sistemaTorneos.pl|, la cual fue aceptada satisfactoriamente
+por el typechecker.
+
+
+
+\end{document}
