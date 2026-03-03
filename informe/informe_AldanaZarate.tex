@@ -229,7 +229,85 @@ arbitrosAsignados \in CARRERA \pfun \power ARBITRO
 La traducción a $\{log\}$ se puede encontrar en el archivo \verb|sistemaTorneos.slog|, la cual fue aceptada satisfactoriamente
 por el typechecker.
 
+Una observación es que este paso de traducir la especificación a $\{log\}$ permitió
+darme cuenta de un error de atención que había tenido al hacer rápido la especificación quizás,
+al poner en una de las operaciones algo imposible como $c? \notin dom(nadadoresInscriptos) \land n? \notin nadadoresInscriptos(c?)$,
+ya que por la primera condición, es trivial ver que no sería posible calcular $nadadoresInscriptos(c?)$.
+
+\section*{Uso del VCG para generar las condiciones de verificación}
+
+Al ejecutar el comando \verb|vcg('sistemaTorneos.slog').| noté que tenía 2 errores y 2 warnings.
+Los errores eran a causa de que en las operaciones que especificaban
+casos de error, tenía parámetros de entrada que no usaba luego. Esto 
+me causó un error en $carreraNoHabilitada$ (pasaba como parámetro un $Nadador$ por 
+el solo hecho de que tenga el mismo tipo que la operación total) y en $carreraYaHabilitada$
+(pasaba un conjunto de $Arbitros$ para respetar el tipo de la operación
+total, y luego no lo usaba en el resto de la operación.)
+
+También me hizo dar cuenta de un error de tipeo en la definición del invariante $torneoPfunAAInv$,
+ya que por copiar y pegar el primer invariante para definir el segundo debido a sus similitudes, había olvidado cambiar 2 veces
+$NI$ por $AA$.
+
+Luego de hacer estas modificaciones, se pudo generar correctamente el archivo 
+\verb|sistemaTorneos-vc.slog|.
+
 \section*{Ejecución de simulaciones}
+
+Pasamos a ejecutar 2 simulaciones sobre el prototipo usando el entorno \textsc{Next}, mostrando
+la traza de ejecución de cada una:
+
+\subsection*{Simulación 1}
+
+\begin{verbatim}
+[initial]:[torneoDominiosInv, torneoPfunNIInv, torneoPfunAAInv] >>
+asignarArbitros(Arbitros:{a1,a2,a3,a4,a5}, Carrera:c1) >>
+inscribirNadador(Nadador:[[n1,n2,n3]], Carrera:c1) >>
+mostrarInfoCarrera(Carrera:c1).
+
+Execution trace is:
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {}
+  ----> asignarArbitros(Arbitros:({}with a5 with a4 with a3 with a2 with a1),Carrera:c1)
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> inscribirNadador(Nadador:n1,Carrera:c1)
+NadadoresInscriptos = {[c1,{n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> inscribirNadador(Nadador:n2,Carrera:c1)
+NadadoresInscriptos = {[c1,{n2,n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> inscribirNadador(Nadador:n3,Carrera:c1)
+NadadoresInscriptos = {[c1,{n3,n2,n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> mostrarInfoCarrera(Carrera:c1)
+S_Nadadores = {n3,n2,n1},  
+S_Arbitros = {a1,a2,a3,a4,a5},  
+NadadoresInscriptos = {[c1,{n3,n2,n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+
+true
+\end{verbatim}
+
+Observamos que la simulación chequea los invariantes y se obtiene el resultado esperado. La idea de la misma es simular 
+un escenario de uso \textit{normal} del sistema (el cual usa los casos de
+éxito de las operaciones): Se le asigna un conjunto de árbitros a una carrera, luego van 3 nadadores a inscribirse a la misma y finalmente se muestra la información disponible
+sobre la carrera en cuestión.
+
+\subsection*{Segunda simulación}
+
+\begin{verbatim}
+  
+\end{verbatim}
+
+Observamos que en esta simulación también se chequean los invariantes y se obtiene el
+resultado esperado. La idea de esta simulación es probar las operaciones que especifican casos
+de error de las operaciones para contemplar estos casos \textit{anormales} de uso: un nadador 
+se quiere inscribir a una carrera no habilitada, se pide mostrar información de una carrera
+inexistente, se quieren asignar árbitros a una carrera que ya los posee, se pide mostrar información
+sobre una carrera que no tiene inscriptos y se quiere inscribir dos veces un mismo nadador a una
+misma carrera.
+
+\section*{Descarga de todas las condiciones de verificación generadas por el VCG}
 
 
 \end{document}

@@ -18,8 +18,8 @@ dec_p_type(torneoPfunNIInv(t_ni)).
 torneoPfunNIInv(NadadoresInscriptos) :- pfun(NadadoresInscriptos).
 
 invariant(torneoPfunAAInv).
-dec_p_type(torneoPfunNIInv(t_aa)).
-torneoPfunNIInv(ArbitrosAsignados) :- pfun(ArbitrosAsignados).
+dec_p_type(torneoPfunAAInv(t_aa)).
+torneoPfunAAInv(ArbitrosAsignados) :- pfun(ArbitrosAsignados).
 
 % Estado inicial del torneo
 
@@ -59,8 +59,8 @@ nadadorYaInscripto(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, Nad
   NadadoresInscriptos_ = NadadoresInscriptos &
   ArbitrosAsignados_ = ArbitrosAsignados.
 
-dec_p_type(carreraNoHabilitada(t_ni, t_aa, t_nadador, t_carrera, t_ni, t_aa)).
-carreraNoHabilitada(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
+dec_p_type(carreraNoHabilitada(t_ni, t_aa, t_carrera, t_ni, t_aa)).
+carreraNoHabilitada(NadadoresInscriptos, ArbitrosAsignados, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
   let([DAa],dom(ArbitrosAsignados, DAa), Carrera nin DAa) &
   let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera nin DNIn) &
   NadadoresInscriptos_ = NadadoresInscriptos &
@@ -75,7 +75,7 @@ inscribirNadador(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, Nadad
   or 
   nadadorYaInscripto(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, NadadoresInscriptos_, ArbitrosAsignados_)
   or
-  carreraNoHabilitada(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) &
+  carreraNoHabilitada(NadadoresInscriptos, ArbitrosAsignados, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) &
   NadadoresInscriptos_ = NadadoresInscriptos &
   ArbitrosAsignados_ = ArbitrosAsignados.
 
@@ -88,8 +88,8 @@ asignarArbitrosOk(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, Nad
   un(ArbitrosAsignados, {[Carrera, Arbitros]}, ArbitrosAsignados_) &
   NadadoresInscriptos_ = NadadoresInscriptos.
 
-dec_p_type(carreraYaHabilitada(t_ni, t_aa, set(t_arbitro), t_carrera, t_ni, t_aa)).
-carreraYaHabilitada(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
+dec_p_type(carreraYaHabilitada(t_ni, t_aa, t_carrera, t_ni, t_aa)).
+carreraYaHabilitada(NadadoresInscriptos, ArbitrosAsignados, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
   let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
   ArbitrosAsignados_ = ArbitrosAsignados &
   NadadoresInscriptos_ = NadadoresInscriptos.
@@ -99,7 +99,7 @@ dec_p_type(asignarArbitros(t_ni, t_aa, set(t_arbitro), t_carrera, t_ni, t_aa)).
 asignarArbitros(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
   asignarArbitrosOk(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, NadadoresInscriptos_, ArbitrosAsignados_)
   or 
-  carreraYaHabilitada(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) &
+  carreraYaHabilitada(NadadoresInscriptos, ArbitrosAsignados, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) &
   NadadoresInscriptos_ = NadadoresInscriptos &
   ArbitrosAsignados_ = ArbitrosAsignados.
 
