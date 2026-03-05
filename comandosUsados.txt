@@ -22,6 +22,9 @@ n? /∈ nadadoresInscriptos(c?)
 
 --------------------------------------------------
 vcg:
+
+vcg('sistemaTorneos.slog').
+
 lo ejecuté y me hizo dar cuenta de este typo!!!!
 invariant(torneoPfunNIInv).
 dec_p_type(torneoPfunNIInv(t_ni)).
@@ -126,6 +129,8 @@ ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
 
 ------------------------
 Descarga de vc
+
+consult('sistemaTorneos-vc.slog').
 
 check_vcs_sistemaTorneos.
 

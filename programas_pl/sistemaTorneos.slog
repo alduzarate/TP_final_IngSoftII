@@ -32,8 +32,12 @@ torneoInicial(NadadoresInscriptos, ArbitrosAsignados) :- NadadoresInscriptos = {
 
 dec_p_type(inscribirNadadorHayCompetidoresOk(t_ni, t_aa, t_nadador, t_carrera, t_ni, t_aa)).
 inscribirNadadorHayCompetidoresOk(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera in DNIn) &
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera in DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera in DNIn &
   dec(NICarr, set(t_nadador)) &
   applyTo(NadadoresInscriptos, Carrera, NICarr) &
   Nadador nin NICarr &
@@ -44,15 +48,23 @@ inscribirNadadorHayCompetidoresOk(NadadoresInscriptos, ArbitrosAsignados, Nadado
 
 dec_p_type(inscribirNadadorSinCompetidoresOk(t_ni, t_aa, t_nadador, t_carrera, t_ni, t_aa)).
 inscribirNadadorSinCompetidoresOk(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera nin DNIn) &
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera in DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera nin DNIn &
   un(NadadoresInscriptos, {[Carrera, {Nadador}]}, NadadoresInscriptos_) &
   ArbitrosAsignados_ = ArbitrosAsignados.
 
 dec_p_type(nadadorYaInscripto(t_ni, t_aa, t_nadador, t_carrera, t_ni, t_aa)).
 nadadorYaInscripto(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera in DNIn) &
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera in DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera in DNIn &
   dec(NICarr, set(t_nadador)) &
   applyTo(NadadoresInscriptos, Carrera, NICarr) &
   Nadador in NICarr &
@@ -61,8 +73,12 @@ nadadorYaInscripto(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, Nad
 
 dec_p_type(carreraNoHabilitada(t_ni, t_aa, t_carrera, t_ni, t_aa)).
 carreraNoHabilitada(NadadoresInscriptos, ArbitrosAsignados, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera nin DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera nin DNIn) &
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera nin DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera nin DNIn &
   NadadoresInscriptos_ = NadadoresInscriptos &
   ArbitrosAsignados_ = ArbitrosAsignados.
 
@@ -83,14 +99,20 @@ inscribirNadador(NadadoresInscriptos, ArbitrosAsignados, Nadador, Carrera, Nadad
 
 dec_p_type(asignarArbitrosOk(t_ni, t_aa, set(t_arbitro), t_carrera, t_ni, t_aa)).
 asignarArbitrosOk(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera nin DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera nin DNIn) &
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera nin DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera nin DNIn &
   un(ArbitrosAsignados, {[Carrera, Arbitros]}, ArbitrosAsignados_) &
   NadadoresInscriptos_ = NadadoresInscriptos.
 
 dec_p_type(carreraYaHabilitada(t_ni, t_aa, t_carrera, t_ni, t_aa)).
 carreraYaHabilitada(NadadoresInscriptos, ArbitrosAsignados, Carrera, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera in DAa &
   ArbitrosAsignados_ = ArbitrosAsignados &
   NadadoresInscriptos_ = NadadoresInscriptos.
 
@@ -105,40 +127,44 @@ asignarArbitros(NadadoresInscriptos, ArbitrosAsignados, Arbitros, Carrera, Nadad
 
 % Mostrar los nadadores inscriptos y árbitros de una carrera
 
-dec_p_type(mostrarInfoCarreraHayInscriptosOk(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro), t_ni, t_aa)).
-mostrarInfoCarreraHayInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera in DNIn) &
+dec_p_type(mostrarInfoCarreraHayInscriptosOk(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro))).
+mostrarInfoCarreraHayInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros) :-
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera in DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera in DNIn &
   applyTo(NadadoresInscriptos, Carrera, S_Nadadores) &
-  applyTo(ArbitrosAsignados, Carrera, S_Arbitros) &
-  NadadoresInscriptos_ = NadadoresInscriptos &
-  ArbitrosAsignados_ = ArbitrosAsignados.
+  applyTo(ArbitrosAsignados, Carrera, S_Arbitros).
 
-dec_p_type(mostrarInfoCarreraSinInscriptosOk(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro), t_ni, t_aa)).
-mostrarInfoCarreraSinInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera in DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera nin DNIn) &
+dec_p_type(mostrarInfoCarreraSinInscriptosOk(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro))).
+mostrarInfoCarreraSinInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros) :-
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera in DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera nin DNIn &
   S_Nadadores = { } &
-  applyTo(ArbitrosAsignados, Carrera, S_Arbitros) &
-  NadadoresInscriptos_ = NadadoresInscriptos &
-  ArbitrosAsignados_ = ArbitrosAsignados.
+  applyTo(ArbitrosAsignados, Carrera, S_Arbitros).
 
-dec_p_type(noHayInfoCarrera(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro), t_ni, t_aa)).
-noHayInfoCarrera(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  let([DAa],dom(ArbitrosAsignados, DAa), Carrera nin DAa) &
-  let([DNIn],dom(NadadoresInscriptos, DNIn), Carrera nin DNIn) &
+dec_p_type(noHayInfoCarrera(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro))).
+noHayInfoCarrera(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros) :-
+  dec(DAa, set(t_carrera)) &
+  dom(ArbitrosAsignados, DAa) &
+  Carrera nin DAa &
+  dec(DNIn, set(t_carrera)) &
+  dom(NadadoresInscriptos, DNIn) &
+  Carrera nin DNIn &
   S_Nadadores = { } &
-  S_Arbitros = { } &
-  NadadoresInscriptos_ = NadadoresInscriptos &
-  ArbitrosAsignados_ = ArbitrosAsignados.
+  S_Arbitros = { }.
 
 operation(mostrarInfoCarrera).
-dec_p_type(mostrarInfoCarrera(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro), t_ni, t_aa)).
-mostrarInfoCarrera(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_) :-
-  mostrarInfoCarreraHayInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_)
+dec_p_type(mostrarInfoCarrera(t_ni, t_aa, t_carrera, set(t_nadador), set(t_arbitro))).
+mostrarInfoCarrera(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros) :-
+  mostrarInfoCarreraHayInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros)
   or 
-  mostrarInfoCarreraSinInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_)
+  mostrarInfoCarreraSinInscriptosOk(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros)
   or
-  noHayInfoCarrera(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros, NadadoresInscriptos_, ArbitrosAsignados_) &
-  NadadoresInscriptos_ = NadadoresInscriptos &
-  ArbitrosAsignados_ = ArbitrosAsignados.
+  noHayInfoCarrera(NadadoresInscriptos, ArbitrosAsignados, Carrera, S_Nadadores, S_Arbitros).

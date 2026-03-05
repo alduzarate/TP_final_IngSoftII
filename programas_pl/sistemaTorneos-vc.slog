@@ -108,32 +108,19 @@ asignarArbitros_pi_torneoPfunAAInv(ArbitrosAsignados,NadadoresInscriptos,Arbitro
   ).
 
 mostrarInfoCarrera_is_sat :-
-  mostrarInfoCarrera(NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) & 
-  delay([NadadoresInscriptos,ArbitrosAsignados] neq [NadadoresInscriptos_,ArbitrosAsignados_],false).
+  mostrarInfoCarrera(NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros).
 
-mostrarInfoCarrera_pi_torneoDominiosInv(NadadoresInscriptos,ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) :-
-  % here conjoin other ax/inv as hypotheses if necessary
-  neg(
-    torneoDominiosInv(NadadoresInscriptos,ArbitrosAsignados) &
-    mostrarInfoCarrera(NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) implies
-    torneoDominiosInv(NadadoresInscriptos_,ArbitrosAsignados_)
-  ).
+mostrarInfoCarrera_pi_torneoDominiosInv(NadadoresInscriptos,ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros):-
+  % mostrarInfoCarrera doesn't change torneoDominiosInv variables
+  neg(true).
 
-mostrarInfoCarrera_pi_torneoPfunNIInv(NadadoresInscriptos,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) :-
-  % here conjoin other ax/inv as hypotheses if necessary
-  neg(
-    torneoPfunNIInv(NadadoresInscriptos) &
-    mostrarInfoCarrera(NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) implies
-    torneoPfunNIInv(NadadoresInscriptos_)
-  ).
+mostrarInfoCarrera_pi_torneoPfunNIInv(NadadoresInscriptos,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros):-
+  % mostrarInfoCarrera doesn't change torneoPfunNIInv variables
+  neg(true).
 
-mostrarInfoCarrera_pi_torneoPfunAAInv(ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) :-
-  % here conjoin other ax/inv as hypotheses if necessary
-  neg(
-    torneoPfunAAInv(ArbitrosAsignados) &
-    mostrarInfoCarrera(NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_) implies
-    torneoPfunAAInv(ArbitrosAsignados_)
-  ).
+mostrarInfoCarrera_pi_torneoPfunAAInv(ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros):-
+  % mostrarInfoCarrera doesn't change torneoPfunAAInv variables
+  neg(true).
 
 check_vcs_sistemaTorneos :-
    def_to(TO) &
@@ -185,9 +172,9 @@ check_aux(TO,Opt) :-
   check_unsat_vc(asignarArbitros_pi_torneoDominiosInv(NadadoresInscriptos,ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Arbitros,Carrera,NadadoresInscriptos_,ArbitrosAsignados_),TO,Opt) &
   check_unsat_vc(asignarArbitros_pi_torneoPfunNIInv(NadadoresInscriptos,NadadoresInscriptos,ArbitrosAsignados,Arbitros,Carrera,NadadoresInscriptos_,ArbitrosAsignados_),TO,Opt) &
   check_unsat_vc(asignarArbitros_pi_torneoPfunAAInv(ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Arbitros,Carrera,NadadoresInscriptos_,ArbitrosAsignados_),TO,Opt) &
-  check_unsat_vc(mostrarInfoCarrera_pi_torneoDominiosInv(NadadoresInscriptos,ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_),TO,Opt) &
-  check_unsat_vc(mostrarInfoCarrera_pi_torneoPfunNIInv(NadadoresInscriptos,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_),TO,Opt) &
-  check_unsat_vc(mostrarInfoCarrera_pi_torneoPfunAAInv(ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros,NadadoresInscriptos_,ArbitrosAsignados_),TO,Opt) &
+  check_unsat_vc(mostrarInfoCarrera_pi_torneoDominiosInv(NadadoresInscriptos,ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros),TO,Opt) &
+  check_unsat_vc(mostrarInfoCarrera_pi_torneoPfunNIInv(NadadoresInscriptos,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros),TO,Opt) &
+  check_unsat_vc(mostrarInfoCarrera_pi_torneoPfunAAInv(ArbitrosAsignados,NadadoresInscriptos,ArbitrosAsignados,Carrera,S_Nadadores,S_Arbitros),TO,Opt) &
   check_aux_stats.
 
 :- nl & prolog_call(ansi_format([bold,fg(green)],'Type checking has been deactivated.',[])) & nl & nl.

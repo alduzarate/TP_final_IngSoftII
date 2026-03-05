@@ -296,7 +296,59 @@ sobre la carrera en cuestión.
 \subsection*{Segunda simulación}
 
 \begin{verbatim}
-  
+[initial]:[torneoDominiosInv, torneoPfunNIInv, torneoPfunAAInv] >>
+inscribirNadador(Nadador:n1, Carrera:c1) >>
+mostrarInfoCarrera(Carrera:c1) >>
+asignarArbitros(Arbitros:{a1,a2,a3,a4,a5}, Carrera:c1) >>
+asignarArbitros(Arbitros:{a6,a7,a8,a9,10}, Carrera:c1) >>
+mostrarInfoCarrera(Carrera:c1) >>
+inscribirNadador(Nadador:n1, Carrera:c1) >>
+inscribirNadador(Nadador:n1, Carrera:c1) >>
+mostrarInfoCarrera(Carrera:c1).
+
+Execution trace is:
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {}
+  ----> inscribirNadador(Nadador:n1,Carrera:c1)
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {}
+  ----> mostrarInfoCarrera(Carrera:c1)
+S_Nadadores = {},  
+S_Arbitros = {},  
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {}
+  ----> asignarArbitros(Arbitros:({}with a5 with a4 with a3 with a2 with a1),Carrera:c1)
+S_Nadadores = {},  
+S_Arbitros = {},  
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> asignarArbitros(Arbitros:({}with 10 with a9 with a8 with a7 with a6),Carrera:c1)
+S_Nadadores = {},  
+S_Arbitros = {},  
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> mostrarInfoCarrera(Carrera:c1)
+S_Nadadores = {},  
+S_Arbitros = {a1,a2,a3,a4,a5},  
+NadadoresInscriptos = {},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> inscribirNadador(Nadador:n1,Carrera:c1)
+S_Nadadores = {},  
+S_Arbitros = {a1,a2,a3,a4,a5},  
+NadadoresInscriptos = {[c1,{n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> inscribirNadador(Nadador:n1,Carrera:c1)
+S_Nadadores = {},  
+S_Arbitros = {a1,a2,a3,a4,a5},  
+NadadoresInscriptos = {[c1,{n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+  ----> mostrarInfoCarrera(Carrera:c1)
+S_Nadadores = {n1},  
+S_Arbitros = {a1,a2,a3,a4,a5},  
+NadadoresInscriptos = {[c1,{n1}]},  
+ArbitrosAsignados = {[c1,{a1,a2,a3,a4,a5}]}
+
+true
 \end{verbatim}
 
 Observamos que en esta simulación también se chequean los invariantes y se obtiene el
@@ -308,6 +360,54 @@ sobre una carrera que no tiene inscriptos y se quiere inscribir dos veces un mis
 misma carrera.
 
 \section*{Descarga de todas las condiciones de verificación generadas por el VCG}
+En un primer intento de descarga al ejecutar \verb|check_vcs_sistemaTorneos.| se obtuvo el siguiente resultado:
+
+\begin{verbatim}
+{log}=> check_vcs_sistemaTorneos.
+
+Checking torneoInicial_sat_torneoDominiosInv ... OK
+Checking torneoInicial_sat_torneoPfunNIInv ... OK
+Checking torneoInicial_sat_torneoPfunAAInv ... OK
+Checking inscribirNadador_is_sat ... OK
+Checking asignarArbitros_is_sat ... OK
+Checking mostrarInfoCarrera_is_sat ... ERROR
+Checking inscribirNadador_pi_torneoDominiosInv ... OK
+Checking inscribirNadador_pi_torneoPfunNIInv ... OK
+Checking inscribirNadador_pi_torneoPfunAAInv ... OK
+Checking asignarArbitros_pi_torneoDominiosInv ... OK
+Checking asignarArbitros_pi_torneoPfunNIInv ... OK
+Checking asignarArbitros_pi_torneoPfunAAInv ... OK
+Checking mostrarInfoCarrera_pi_torneoDominiosInv ... OK
+Checking mostrarInfoCarrera_pi_torneoPfunNIInv ... OK
+Checking mostrarInfoCarrera_pi_torneoPfunAAInv ... OK
+
+Total VCs: 15 (discharged: 14, failed: 1, timeout: 0)
+Execution time (excluding timeouts): 0.14149045944213867 s
+yes
+\end{verbatim}
+
+Intenté ejecutar \verb|vcgce(mostrarInfoCarrera_is_sat).| pero no dio mucha información:
+
+\begin{verbatim}
+{log}=> vcgce(mostrarInfoCarrera_is_sat).
+findh error: it seems that mostrarInfoCarrera_is_sat has been proved
+
+yes
+\end{verbatim}
+
+Ante este error se procedió por: 
+\begin{itemize}
+  \item Reemplazar el uso de \verb|let| en operaciones por \verb|dec|.
+  \item Eliminar las variables de estado primadas de las interfaces de la operación \verb|mostrarInfoCarrera|,
+  la cual no produce cambios en dichas variables.
+\end{itemize}
+
+Luego de hacer esto, \verb|check_vcs_sistemaTorneos.| funcionó correctamente y devolvió \verb|OK|
+para todos los casos.
+
+\section*{Generación de casos de prueba a partir del programa $\{log\}$ usando $\{log\}$-TTF}
+
 
 
 \end{document}
+
