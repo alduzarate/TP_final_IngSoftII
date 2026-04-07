@@ -157,3 +157,31 @@ yes
 => vcgce(mostrarInfoCarrera_is_sat).
 findh error: it seems that mostrarInfoCarrera_is_sat has been proved
 
+---------------------------------------
+Testing con ttf:
+
+swipl
+
+consult('setlog.pl').
+
+setlog.
+
+type_check.
+
+consult("sistemaTorneos.slog")
+
+{log}=> consult('sistemaTorneos-vc.slog').
+
+{log}=> check_vcs_sistemaTorneos.
+
+Operacion inscribirNadador:
+ttf(sistemaTorneos)
+
+
+Operacion asignarArbitros:
+ttf(sistemaTorneos)
+
+
+
+Operacion mostrarInfoCarrera:
+ttf(sistemaTorneos)
