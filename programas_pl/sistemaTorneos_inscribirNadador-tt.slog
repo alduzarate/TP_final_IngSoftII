@@ -1,0 +1,253 @@
+inscribirNadador_ts_1242(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  un(_39312,{Nadador},_39280) &
+  dec(_39280,set(t_nadador)) &
+  Nadador nin _39312 &
+  applyTo(NadadoresInscriptos,Carrera,_39312) &
+  dec(_39312,set(t_nadador)) &
+  Carrera in _39322 &
+  dom(NadadoresInscriptos,_39322) &
+  dec(_39322,set(t_carrera)) &
+  Carrera in _39332 &
+  dom(ArbitrosAsignados,_39332) &
+  dec(_39332,set(t_carrera)) &
+  _39312={} &
+  {Nadador}neq{} &
+  NadadoresInscriptos neq {} &
+  {[Carrera,_39280]}neq{} &
+  let([_43206,_43212],dom(NadadoresInscriptos,_43206)&dom({[Carrera,_39280]},_43212),_43206=_43212) &
+  NadadoresInscriptos={_41064} &
+  dec(_41064,[t_carrera,set(t_nadador)]).
+
+inscribirNadador_tc_1242(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador=t_nadador:n2 &
+  NadadoresInscriptos={[t_carrera:n1,{}]} &
+  Carrera=t_carrera:n1 &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n0}]}.
+
+inscribirNadador_ts_1253(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  un(_39312,{Nadador},_39280) &
+  dec(_39280,set(t_nadador)) &
+  Nadador nin _39312 &
+  applyTo(NadadoresInscriptos,Carrera,_39312) &
+  dec(_39312,set(t_nadador)) &
+  Carrera in _39322 &
+  dom(NadadoresInscriptos,_39322) &
+  dec(_39322,set(t_carrera)) &
+  Carrera in _39332 &
+  dom(ArbitrosAsignados,_39332) &
+  dec(_39332,set(t_carrera)) &
+  _39312={} &
+  {Nadador}neq{} &
+  NadadoresInscriptos neq {} &
+  {[Carrera,_39280]}neq{} &
+  let([_43292,_43298],dom(NadadoresInscriptos,_43292)&dom({[Carrera,_39280]},_43298),subset(_43298,_43292)&_43292 neq _43298) &
+  NadadoresInscriptos={_41064,_41268/_41270} &
+  _41064 neq _41268 &
+  dec([_41064,_41268],[t_carrera,set(t_nadador)]) &
+  dec(_41270,set([t_carrera,set(t_nadador)])).
+
+inscribirNadador_tc_1253(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador=t_nadador:n4 &
+  NadadoresInscriptos={[t_carrera:n0,{}],[t_carrera:n1,{t_nadador:n3}]} &
+  Carrera=t_carrera:n0 &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}]}.
+
+inscribirNadador_ts_1442(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  un(_39312,{Nadador},_39280) &
+  dec(_39280,set(t_nadador)) &
+  Nadador nin _39312 &
+  applyTo(NadadoresInscriptos,Carrera,_39312) &
+  dec(_39312,set(t_nadador)) &
+  Carrera in _39322 &
+  dom(NadadoresInscriptos,_39322) &
+  dec(_39322,set(t_carrera)) &
+  Carrera in _39332 &
+  dom(ArbitrosAsignados,_39332) &
+  dec(_39332,set(t_carrera)) &
+  _39312 neq {} &
+  {Nadador}neq{} &
+  disj(_39312,{Nadador}) &
+  NadadoresInscriptos neq {} &
+  {[Carrera,_39280]}neq{} &
+  let([_43206,_43212],dom(NadadoresInscriptos,_43206)&dom({[Carrera,_39280]},_43212),_43206=_43212) &
+  NadadoresInscriptos={_41064} &
+  dec(_41064,[t_carrera,set(t_nadador)]).
+
+inscribirNadador_tc_1442(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador=t_nadador:n0 &
+  NadadoresInscriptos={[t_carrera:n3,{t_nadador:n1}]} &
+  Carrera=t_carrera:n3 &
+  ArbitrosAsignados={[t_carrera:n3,{t_arbitro:n2}]}.
+
+inscribirNadador_ts_1453(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  un(_39312,{Nadador},_39280) &
+  dec(_39280,set(t_nadador)) &
+  Nadador nin _39312 &
+  applyTo(NadadoresInscriptos,Carrera,_39312) &
+  dec(_39312,set(t_nadador)) &
+  Carrera in _39322 &
+  dom(NadadoresInscriptos,_39322) &
+  dec(_39322,set(t_carrera)) &
+  Carrera in _39332 &
+  dom(ArbitrosAsignados,_39332) &
+  dec(_39332,set(t_carrera)) &
+  _39312 neq {} &
+  {Nadador}neq{} &
+  disj(_39312,{Nadador}) &
+  NadadoresInscriptos neq {} &
+  {[Carrera,_39280]}neq{} &
+  let([_43292,_43298],dom(NadadoresInscriptos,_43292)&dom({[Carrera,_39280]},_43298),subset(_43298,_43292)&_43292 neq _43298) &
+  NadadoresInscriptos={_41064,_41268/_41270} &
+  _41064 neq _41268 &
+  dec([_41064,_41268],[t_carrera,set(t_nadador)]) &
+  dec(_41270,set([t_carrera,set(t_nadador)])).
+
+inscribirNadador_tc_1453(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador=t_nadador:n0 &
+  NadadoresInscriptos={[t_carrera:n2,{t_nadador:n1}],[t_carrera:n3,{t_nadador:n5}]} &
+  Carrera=t_carrera:n2 &
+  ArbitrosAsignados={[t_carrera:n2,{t_arbitro:n4}]}.
+
+inscribirNadador_ts_221(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _39598 &
+  dom(NadadoresInscriptos,_39598) &
+  dec(_39598,set(t_carrera)) &
+  Carrera in _39618 &
+  dom(ArbitrosAsignados,_39618) &
+  dec(_39618,set(t_carrera)) &
+  NadadoresInscriptos={} &
+  {[Carrera,{Nadador}]}neq{} &
+  NadadoresInscriptos={}.
+
+inscribirNadador_tc_221(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n2 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n2,{t_arbitro:n1}]} &
+  Nadador=t_nadador:n0.
+
+inscribirNadador_ts_242(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _39598 &
+  dom(NadadoresInscriptos,_39598) &
+  dec(_39598,set(t_carrera)) &
+  Carrera in _39618 &
+  dom(ArbitrosAsignados,_39618) &
+  dec(_39618,set(t_carrera)) &
+  NadadoresInscriptos neq {} &
+  {[Carrera,{Nadador}]}neq{} &
+  disj(NadadoresInscriptos,{[Carrera,{Nadador}]}) &
+  NadadoresInscriptos={_42028} &
+  dec(_42028,[t_carrera,set(t_nadador)]).
+
+inscribirNadador_tc_242(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n4}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n3}]} &
+  Nadador=t_nadador:n2.
+
+inscribirNadador_ts_243(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _39598 &
+  dom(NadadoresInscriptos,_39598) &
+  dec(_39598,set(t_carrera)) &
+  Carrera in _39618 &
+  dom(ArbitrosAsignados,_39618) &
+  dec(_39618,set(t_carrera)) &
+  NadadoresInscriptos neq {} &
+  {[Carrera,{Nadador}]}neq{} &
+  disj(NadadoresInscriptos,{[Carrera,{Nadador}]}) &
+  NadadoresInscriptos={_42028,_42242/_42244} &
+  _42028 neq _42242 &
+  dec([_42028,_42242],[t_carrera,set(t_nadador)]) &
+  dec(_42244,set([t_carrera,set(t_nadador)])).
+
+inscribirNadador_tc_243(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n5}],[t_carrera:n2,{t_nadador:n6}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n4}]} &
+  Nadador=t_nadador:n3.
+
+inscribirNadador_ts_32(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador in _39792 &
+  applyTo(NadadoresInscriptos,Carrera,_39792) &
+  dec(_39792,set(t_nadador)) &
+  Carrera in _39808 &
+  dom(NadadoresInscriptos,_39808) &
+  dec(_39808,set(t_carrera)) &
+  Carrera in _39828 &
+  dom(ArbitrosAsignados,_39828) &
+  dec(_39828,set(t_carrera)) &
+  NadadoresInscriptos={_40678} &
+  dec(_40678,[t_carrera,set(t_nadador)]).
+
+inscribirNadador_tc_32(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador=t_nadador:n2 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n2}]} &
+  Carrera=t_carrera:n1 &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n0}]}.
+
+inscribirNadador_ts_33(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador in _39792 &
+  applyTo(NadadoresInscriptos,Carrera,_39792) &
+  dec(_39792,set(t_nadador)) &
+  Carrera in _39808 &
+  dom(NadadoresInscriptos,_39808) &
+  dec(_39808,set(t_carrera)) &
+  Carrera in _39828 &
+  dom(ArbitrosAsignados,_39828) &
+  dec(_39828,set(t_carrera)) &
+  NadadoresInscriptos={_40678,_40744/_40746} &
+  _40678 neq _40744 &
+  dec([_40678,_40744],[t_carrera,set(t_nadador)]) &
+  dec(_40746,set([t_carrera,set(t_nadador)])).
+
+inscribirNadador_tc_33(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Nadador=t_nadador:n4 &
+  NadadoresInscriptos={[t_carrera:n0,{t_nadador:n4}],[t_carrera:n1,{t_nadador:n3}]} &
+  Carrera=t_carrera:n0 &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}]}.
+
+inscribirNadador_ts_41(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _40054 &
+  dom(NadadoresInscriptos,_40054) &
+  dec(_40054,set(t_carrera)) &
+  Carrera nin _40080 &
+  dom(ArbitrosAsignados,_40080) &
+  dec(_40080,set(t_carrera)) &
+  ArbitrosAsignados={}.
+
+inscribirNadador_tc_41(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={}.
+
+inscribirNadador_ts_42(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _40054 &
+  dom(NadadoresInscriptos,_40054) &
+  dec(_40054,set(t_carrera)) &
+  Carrera nin _40080 &
+  dom(ArbitrosAsignados,_40080) &
+  dec(_40080,set(t_carrera)) &
+  ArbitrosAsignados={_40910} &
+  dec(_40910,[t_carrera,set(t_arbitro)]).
+
+inscribirNadador_tc_42(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n2}]}.
+
+inscribirNadador_ts_43(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _40054 &
+  dom(NadadoresInscriptos,_40054) &
+  dec(_40054,set(t_carrera)) &
+  Carrera nin _40080 &
+  dom(ArbitrosAsignados,_40080) &
+  dec(_40080,set(t_carrera)) &
+  ArbitrosAsignados={_40910,_40976/_40978} &
+  _40910 neq _40976 &
+  dec([_40910,_40976],[t_carrera,set(t_arbitro)]) &
+  dec(_40978,set([t_carrera,set(t_arbitro)])).
+
+inscribirNadador_tc_43(Nadador,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n3}],[t_carrera:n2,{t_arbitro:n4}]}.
+

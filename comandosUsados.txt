@@ -168,20 +168,235 @@ setlog.
 
 type_check.
 
-consult("sistemaTorneos.slog")
+consult("sistemaTorneos.slog").
 
-{log}=> consult('sistemaTorneos-vc.slog').
+consult('sistemaTorneos-vc.slog').
 
-{log}=> check_vcs_sistemaTorneos.
+check_vcs_sistemaTorneos.
 
-Operacion inscribirNadador:
-ttf(sistemaTorneos)
+---> Operacion inscribirNadador:
+
+ttf(sistemaTorneos).
+applydnf(inscribirNadador(Nadador, Carrera)).
+writett.
+exporttt. (para ver las precondiciones de cada una de los nodos generados. 
+          Vemos que inscribirNadador_dnf_1 -> caso inscribirNadadorHayCompetidoresOk , inscribirNadador_dnf_2 -> caso inscribirNadadorSinCompetidoresOk, 
+          inscribirNadador_dnf_3 -> nadadorYaInscripto, inscribirNadador_dnf_4 -> carreraNoHabilitada)
+applysp(inscribirNadador_dnf_1, un(NICarr, {Nadador}, UnionNadadores)).
+writett. 
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_11
+              inscribirNadador_sp_12
+              inscribirNadador_sp_13
+              inscribirNadador_sp_14
+              inscribirNadador_sp_15
+              inscribirNadador_sp_16
+              inscribirNadador_sp_17
+              inscribirNadador_sp_18
+            inscribirNadador_dnf_2
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+              inscribirNadador_sp_14
+            inscribirNadador_dnf_2
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+applysp(inscribirNadador_dnf_1, oplus(NadadoresInscriptos, {[Carrera, UnionNadadores]}, NadadoresInscriptos_)).
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_121
+                inscribirNadador_sp_122
+                inscribirNadador_sp_123
+                inscribirNadador_sp_124
+                inscribirNadador_sp_125
+                inscribirNadador_sp_126
+                inscribirNadador_sp_127
+                inscribirNadador_sp_128
+              inscribirNadador_sp_14
+                inscribirNadador_sp_141
+                inscribirNadador_sp_142
+                inscribirNadador_sp_143
+                inscribirNadador_sp_144
+                inscribirNadador_sp_145
+                inscribirNadador_sp_146
+                inscribirNadador_sp_147
+                inscribirNadador_sp_148
+            inscribirNadador_dnf_2
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_124
+                inscribirNadador_sp_125
+              inscribirNadador_sp_14
+                inscribirNadador_sp_144
+                inscribirNadador_sp_145
+            inscribirNadador_dnf_2
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+applysc(inscribirNadador_dnf_1, NadadoresInscriptos).
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_124
+                  inscribirNadador_sc_1242
+                inscribirNadador_sp_125
+                  inscribirNadador_sc_1253
+              inscribirNadador_sp_14
+                inscribirNadador_sp_144
+                  inscribirNadador_sc_1442
+                inscribirNadador_sp_145
+                  inscribirNadador_sc_1453
+            inscribirNadador_dnf_2
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+applysp(inscribirNadador_dnf_2, un(NadadoresInscriptos, {[Carrera, {Nadador}]}, NadadoresInscriptos_)).
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_124
+                  inscribirNadador_sc_1242
+                inscribirNadador_sp_125
+                  inscribirNadador_sc_1253
+              inscribirNadador_sp_14
+                inscribirNadador_sp_144
+                  inscribirNadador_sc_1442
+                inscribirNadador_sp_145
+                  inscribirNadador_sc_1453
+            inscribirNadador_dnf_2
+              inscribirNadador_sp_22
+              inscribirNadador_sp_24
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+applysc(inscribirNadador_dnf_2, NadadoresInscriptos).
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_124
+                  inscribirNadador_sc_1242
+                inscribirNadador_sp_125
+                  inscribirNadador_sc_1253
+              inscribirNadador_sp_14
+                inscribirNadador_sp_144
+                  inscribirNadador_sc_1442
+                inscribirNadador_sp_145
+                  inscribirNadador_sc_1453
+            inscribirNadador_dnf_2
+              inscribirNadador_sp_22
+                inscribirNadador_sc_221
+              inscribirNadador_sp_24
+                inscribirNadador_sc_242
+                inscribirNadador_sc_243
+            inscribirNadador_dnf_3
+            inscribirNadador_dnf_4
+applysc(inscribirNadador_dnf_3, NadadoresInscriptos).
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_124
+                  inscribirNadador_sc_1242
+                inscribirNadador_sp_125
+                  inscribirNadador_sc_1253
+              inscribirNadador_sp_14
+                inscribirNadador_sp_144
+                  inscribirNadador_sc_1442
+                inscribirNadador_sp_145
+                  inscribirNadador_sc_1453
+            inscribirNadador_dnf_2
+              inscribirNadador_sp_22
+                inscribirNadador_sc_221
+              inscribirNadador_sp_24
+                inscribirNadador_sc_242
+                inscribirNadador_sc_243
+            inscribirNadador_dnf_3
+              inscribirNadador_sc_32
+              inscribirNadador_sc_33
+            inscribirNadador_dnf_4
+applysc(inscribirNadador_dnf_4, ArbitrosAsignados).
+prunett.
+writett.
+          inscribirNadador_vis
+            inscribirNadador_dnf_1
+              inscribirNadador_sp_12
+                inscribirNadador_sp_124
+                  inscribirNadador_sc_1242
+                inscribirNadador_sp_125
+                  inscribirNadador_sc_1253
+              inscribirNadador_sp_14
+                inscribirNadador_sp_144
+                  inscribirNadador_sc_1442
+                inscribirNadador_sp_145
+                  inscribirNadador_sc_1453
+            inscribirNadador_dnf_2
+              inscribirNadador_sp_22
+                inscribirNadador_sc_221
+              inscribirNadador_sp_24
+                inscribirNadador_sc_242
+                inscribirNadador_sc_243
+            inscribirNadador_dnf_3
+              inscribirNadador_sc_32
+              inscribirNadador_sc_33
+            inscribirNadador_dnf_4
+              inscribirNadador_sc_41
+              inscribirNadador_sc_42
+              inscribirNadador_sc_43
+gentc.
+writetc.
+inscribirNadador_vis
+  inscribirNadador_dnf_1
+    inscribirNadador_sp_12
+      inscribirNadador_sp_124
+        inscribirNadador_sc_1242 -> inscribirNadador_tc_1242
+      inscribirNadador_sp_125
+        inscribirNadador_sc_1253 -> inscribirNadador_tc_1253
+    inscribirNadador_sp_14
+      inscribirNadador_sp_144
+        inscribirNadador_sc_1442 -> inscribirNadador_tc_1442
+      inscribirNadador_sp_145
+        inscribirNadador_sc_1453 -> inscribirNadador_tc_1453
+  inscribirNadador_dnf_2
+    inscribirNadador_sp_22
+      inscribirNadador_sc_221 -> inscribirNadador_tc_221
+    inscribirNadador_sp_24
+      inscribirNadador_sc_242 -> inscribirNadador_tc_242
+      inscribirNadador_sc_243 -> inscribirNadador_tc_243
+  inscribirNadador_dnf_3
+    inscribirNadador_sc_32 -> inscribirNadador_tc_32
+    inscribirNadador_sc_33 -> inscribirNadador_tc_33
+  inscribirNadador_dnf_4
+    inscribirNadador_sc_41 -> inscribirNadador_tc_41
+    inscribirNadador_sc_42 -> inscribirNadador_tc_42
+    inscribirNadador_sc_43 -> inscribirNadador_tc_43
+
+writetc.
+
+exporttt.
+
+---> Operacion asignarArbitros:
+ttf(sistemaTorneos).
 
 
-Operacion asignarArbitros:
-ttf(sistemaTorneos)
 
 
 
-Operacion mostrarInfoCarrera:
-ttf(sistemaTorneos)
+
+---> Operacion mostrarInfoCarrera:
+ttf(sistemaTorneos).

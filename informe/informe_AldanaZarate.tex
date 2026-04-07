@@ -407,7 +407,76 @@ para todos los casos.
 
 \section*{Generación de casos de prueba a partir del programa $\{log\}$ usando $\{log\}$-TTF}
 
+A lo largo de este trabajo, se han realizado las siguientes acciones:
+\begin{itemize}
+  \item La especificación ha pasado el control de tipos.
+  \item La especificación ha sido analizada por el VCG.
+  \item El archivo con las condiciones de verificación ha sido consultado.
+  \item Se han descargado las condiciones de verificación generadas por el VCG.
+\end{itemize}
 
+con lo cual procederemos a elaborar casos de testing para todas las operaciones.
+
+\subsection*{Operación inscribirNadador}
+A continuación se deja la secuencia de comandos utilizados para obtener los casos de prueba.\footnote{En los listados de comandos se omitió la ejecución de varios \textit{writett} (usados para ir 
+visualizando el árbol) y un \textit{exporttt} luego de aplicar la técnica de FND, usado para poder ver qué escenario
+correspondía a cada nodo generado por la técnica.} Los mismos se pueden encontrar en el archivo \verb|sistemaTorneos_inscribirNadador-tt.slog|.\footnote{Analizando
+los casos de prueba generados, pude observar que hay algunos que no cumplen con el invariante definido.}
+
+\subsubsection*{Comandos utilizados}
+
+\begin{footnotesize}
+\begin{verbatim}
+  ttf(sistemaTorneos).
+  applydnf(inscribirNadador(Nadador, Carrera)).
+  applysp(inscribirNadador_dnf_1, un(NICarr, {Nadador}, UnionNadadores)).
+  prunett.
+  applysp(inscribirNadador_dnf_1, oplus(NadadoresInscriptos, {[Carrera, UnionNadadores]}, NadadoresInscriptos_)).
+  prunett.
+  applysc(inscribirNadador_dnf_1, NadadoresInscriptos).
+  prunett.
+  applysp(inscribirNadador_dnf_2, un(NadadoresInscriptos, {[Carrera, {Nadador}]}, NadadoresInscriptos_)).
+  prunett.
+  applysc(inscribirNadador_dnf_2, NadadoresInscriptos).
+  prunett.
+  applysc(inscribirNadador_dnf_3, NadadoresInscriptos).
+  prunett.
+  applysc(inscribirNadador_dnf_4, ArbitrosAsignados).
+  prunett.
+  exporttt.
+\end{verbatim}
+\end{footnotesize}
+
+Primero se aplicó la táctica FND, la cual particiona la operación según las precondiciones de las 
+suboperaciones que la conforman. Esto generó 4 nodos: 
+\begin{itemize}
+  \item \verb|inscribirNadador_dnf_1|
+  \item \verb|inscribirNadador_dnf_2|
+  \item \verb|inscribirNadador_dnf_3|
+  \item \verb|teinscribirNadador_dnf_4|
+\end{itemize}
+
+uno por cada suboperación.
+
+Luego, se aplica la táctica SP de los operadores {\fontfamily{pcr}\selectfont un} y {\fontfamily{pcr}\selectfont oplus} sobre \verb|inscribirNadador_dnf_1|, correspondiente al caso exitoso
+de inscripción en una carrera con otros competidores, para testear el comportamiento de estos operadores.
+Finalmente para este nodo, se aplicó la táctica de SC sobre el conjunto {\fontfamily{pcr}\selectfont NadadoresInscriptos},
+para tener varios escenarios posibles del conjunto sobre el cual se va a trabajar al final de la operación.
+
+Sobre el nodo \verb|inscribirNadador_dnf_2|, se aplica la táctica SP para testear el operador de unión usado 
+en la suboperación y de manera análoga también se aplicó la técnica de SC.
+
+Sobre los dos nodos restantes, se aplicó la técnica de SC sobre los conjuntos que analiza cada suboperación
+para dar lugar al caso que representa.
+
+Entre cada técnica se aplicó \verb|prunett| para podar las hojas insatisfacibles del árbol. 
+
+
+\subsection*{Operación asignarArbitros}
+
+
+
+\subsection*{Operación mostrarInfoCarrera}
 
 \end{document}
 
