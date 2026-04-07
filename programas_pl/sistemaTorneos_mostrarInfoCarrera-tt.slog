@@ -1,0 +1,345 @@
+mostrarInfoCarrera_ts_122(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera in _27246 &
+  dom(NadadoresInscriptos,_27246) &
+  dec(_27246,set(t_carrera)) &
+  Carrera in _27272 &
+  dom(ArbitrosAsignados,_27272) &
+  dec(_27272,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_122(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n2 &
+  NadadoresInscriptos={[t_carrera:n2,{t_nadador:n1}]} &
+  ArbitrosAsignados={[t_carrera:n2,{t_arbitro:n0}]}.
+
+mostrarInfoCarrera_ts_123(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera in _27246 &
+  dom(NadadoresInscriptos,_27246) &
+  dec(_27246,set(t_carrera)) &
+  Carrera in _27272 &
+  dom(ArbitrosAsignados,_27272) &
+  dec(_27272,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={_28228,_28294/_28296} &
+  _28228 neq _28294 &
+  dec([_28228,_28294],[t_carrera,set(t_nadador)]) &
+  dec(_28296,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_123(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n0,{t_nadador:n3}],[t_carrera:n1,{t_nadador:n4}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}]}.
+
+mostrarInfoCarrera_ts_132(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera in _27246 &
+  dom(NadadoresInscriptos,_27246) &
+  dec(_27246,set(t_carrera)) &
+  Carrera in _27272 &
+  dom(ArbitrosAsignados,_27272) &
+  dec(_27272,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_132(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n0,{t_nadador:n4}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}],[t_carrera:n1,{t_arbitro:n3}]}.
+
+mostrarInfoCarrera_ts_133(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera in _27246 &
+  dom(NadadoresInscriptos,_27246) &
+  dec(_27246,set(t_carrera)) &
+  Carrera in _27272 &
+  dom(ArbitrosAsignados,_27272) &
+  dec(_27272,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={_28228,_28294/_28296} &
+  _28228 neq _28294 &
+  dec([_28228,_28294],[t_carrera,set(t_nadador)]) &
+  dec(_28296,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_133(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n0,{t_nadador:n5}],[t_carrera:n2,{t_nadador:n6}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n3}],[t_carrera:n1,{t_arbitro:n4}]}.
+
+mostrarInfoCarrera_ts_221(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27418 &
+  dom(NadadoresInscriptos,_27418) &
+  dec(_27418,set(t_carrera)) &
+  Carrera in _27444 &
+  dom(ArbitrosAsignados,_27444) &
+  dec(_27444,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={}.
+
+mostrarInfoCarrera_tc_221(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n1 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n0}]}.
+
+mostrarInfoCarrera_ts_222(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27418 &
+  dom(NadadoresInscriptos,_27418) &
+  dec(_27418,set(t_carrera)) &
+  Carrera in _27444 &
+  dom(ArbitrosAsignados,_27444) &
+  dec(_27444,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_222(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n3}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}]}.
+
+mostrarInfoCarrera_ts_223(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27418 &
+  dom(NadadoresInscriptos,_27418) &
+  dec(_27418,set(t_carrera)) &
+  Carrera in _27444 &
+  dom(ArbitrosAsignados,_27444) &
+  dec(_27444,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={_28228,_28294/_28296} &
+  _28228 neq _28294 &
+  dec([_28228,_28294],[t_carrera,set(t_nadador)]) &
+  dec(_28296,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_223(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n4}],[t_carrera:n2,{t_nadador:n5}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n3}]}.
+
+mostrarInfoCarrera_ts_231(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27418 &
+  dom(NadadoresInscriptos,_27418) &
+  dec(_27418,set(t_carrera)) &
+  Carrera in _27444 &
+  dom(ArbitrosAsignados,_27444) &
+  dec(_27444,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={}.
+
+mostrarInfoCarrera_tc_231(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}],[t_carrera:n1,{t_arbitro:n3}]}.
+
+mostrarInfoCarrera_ts_232(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27418 &
+  dom(NadadoresInscriptos,_27418) &
+  dec(_27418,set(t_carrera)) &
+  Carrera in _27444 &
+  dom(ArbitrosAsignados,_27444) &
+  dec(_27444,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_232(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n5}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n3}],[t_carrera:n2,{t_arbitro:n4}]}.
+
+mostrarInfoCarrera_ts_233(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27418 &
+  dom(NadadoresInscriptos,_27418) &
+  dec(_27418,set(t_carrera)) &
+  Carrera in _27444 &
+  dom(ArbitrosAsignados,_27444) &
+  dec(_27444,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={_28228,_28294/_28296} &
+  _28228 neq _28294 &
+  dec([_28228,_28294],[t_carrera,set(t_nadador)]) &
+  dec(_28296,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_233(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n6}],[t_carrera:n2,{t_nadador:n7}]} &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n4}],[t_carrera:n3,{t_arbitro:n5}]}.
+
+mostrarInfoCarrera_ts_311(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={} &
+  NadadoresInscriptos={}.
+
+mostrarInfoCarrera_tc_311(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={}.
+
+mostrarInfoCarrera_ts_312(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={} &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_312(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n2}]} &
+  ArbitrosAsignados={}.
+
+mostrarInfoCarrera_ts_313(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={} &
+  NadadoresInscriptos={_28228,_28294/_28296} &
+  _28228 neq _28294 &
+  dec([_28228,_28294],[t_carrera,set(t_nadador)]) &
+  dec(_28296,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_313(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n3}],[t_carrera:n2,{t_nadador:n4}]} &
+  ArbitrosAsignados={}.
+
+mostrarInfoCarrera_ts_321(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={}.
+
+mostrarInfoCarrera_tc_321(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n2}]}.
+
+mostrarInfoCarrera_ts_322(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_322(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n4}]} &
+  ArbitrosAsignados={[t_carrera:n2,{t_arbitro:n3}]}.
+
+mostrarInfoCarrera_ts_323(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={_27852} &
+  dec(_27852,[t_carrera,set(t_arbitro)]) &
+  NadadoresInscriptos={_28228,_28294/_28296} &
+  _28228 neq _28294 &
+  dec([_28228,_28294],[t_carrera,set(t_nadador)]) &
+  dec(_28296,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_323(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n5}],[t_carrera:n2,{t_nadador:n6}]} &
+  ArbitrosAsignados={[t_carrera:n3,{t_arbitro:n4}]}.
+
+mostrarInfoCarrera_ts_331(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={}.
+
+mostrarInfoCarrera_tc_331(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n3}],[t_carrera:n2,{t_arbitro:n4}]}.
+
+mostrarInfoCarrera_ts_332(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _27594 &
+  dom(NadadoresInscriptos,_27594) &
+  dec(_27594,set(t_carrera)) &
+  Carrera nin _27620 &
+  dom(ArbitrosAsignados,_27620) &
+  dec(_27620,set(t_carrera)) &
+  ArbitrosAsignados={_27852,_27918/_27920} &
+  _27852 neq _27918 &
+  dec([_27852,_27918],[t_carrera,set(t_arbitro)]) &
+  dec(_27920,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={_28228} &
+  dec(_28228,[t_carrera,set(t_nadador)]).
+
+mostrarInfoCarrera_tc_332(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n6}]} &
+  ArbitrosAsignados={[t_carrera:n2,{t_arbitro:n4}],[t_carrera:n3,{t_arbitro:n5}]}.
+
+mostrarInfoCarrera_ts_333(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _6172 &
+  dom(NadadoresInscriptos,_6172) &
+  dec(_6172,set(t_carrera)) &
+  Carrera nin _6198 &
+  dom(ArbitrosAsignados,_6198) &
+  dec(_6198,set(t_carrera)) &
+  ArbitrosAsignados={_6430,_6496/_6498} &
+  _6430 neq _6496 &
+  dec([_6430,_6496],[t_carrera,set(t_arbitro)]) &
+  dec(_6498,set([t_carrera,set(t_arbitro)])) &
+  NadadoresInscriptos={_6806,_6872/_6874} &
+  _6806 neq _6872 &
+  dec([_6806,_6872],[t_carrera,set(t_nadador)]) &
+  dec(_6874,set([t_carrera,set(t_nadador)])).
+
+mostrarInfoCarrera_tc_333(Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={[t_carrera:n1,{t_nadador:n7}],[t_carrera:n2,{t_nadador:n8}]} &
+  ArbitrosAsignados={[t_carrera:n3,{t_arbitro:n5}],[t_carrera:n4,{t_arbitro:n6}]}.
+

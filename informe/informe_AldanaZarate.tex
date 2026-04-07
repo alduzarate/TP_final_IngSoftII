@@ -508,11 +508,22 @@ Los mismos se pueden encontrar en el archivo \verb|sistemaTorneos_mostrarInfoCar
 \begin{verbatim}
   ttf(sistemaTorneos).
   applydnf(mostrarInfoCarrera(Carrera)).
-
+  applysc(mostrarInfoCarrera_vis, ArbitrosAsignados).
+  prunett.
+  applysc(mostrarInfoCarrera_vis, NadadoresInscriptos).
+  prunett.
   gentc.
   writetc.
   exporttt.
 \end{verbatim}
+
+En esta operación se aplicó la táctica FND, la cual creó un árbol de 3 nodos, uno para cada
+suboperación. Luego se aplicó la táctica SC sobre todo el árbol, primero con el
+conjunto {\fontfamily{pcr}\selectfont ArbitrosAsignados} y luego con {\fontfamily{pcr}\selectfont NadadoresInscriptos}.
+
+Observando los casos de prueba generados, quizás resulte un poco excesivo aplicar esta
+táctica sobre todo el árbol, ya que los casos generados para el último nodo pueden ser un poco
+redundantes.
 
 \end{document}
 

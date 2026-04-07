@@ -408,3 +408,34 @@ asignarArbitros_vis
 
 ---> Operacion mostrarInfoCarrera:
 ttf(sistemaTorneos).
+
+mostrarInfoCarrera_vis
+  mostrarInfoCarrera_dnf_1
+    mostrarInfoCarrera_sc_12
+      mostrarInfoCarrera_sc_122 -> mostrarInfoCarrera_tc_122
+      mostrarInfoCarrera_sc_123 -> mostrarInfoCarrera_tc_123
+    mostrarInfoCarrera_sc_13
+      mostrarInfoCarrera_sc_132 -> mostrarInfoCarrera_tc_132
+      mostrarInfoCarrera_sc_133 -> mostrarInfoCarrera_tc_133
+  mostrarInfoCarrera_dnf_2
+    mostrarInfoCarrera_sc_22
+      mostrarInfoCarrera_sc_221 -> mostrarInfoCarrera_tc_221
+      mostrarInfoCarrera_sc_222 -> mostrarInfoCarrera_tc_222
+      mostrarInfoCarrera_sc_223 -> mostrarInfoCarrera_tc_223
+    mostrarInfoCarrera_sc_23
+      mostrarInfoCarrera_sc_231 -> mostrarInfoCarrera_tc_231
+      mostrarInfoCarrera_sc_232 -> mostrarInfoCarrera_tc_232
+      mostrarInfoCarrera_sc_233 -> mostrarInfoCarrera_tc_233
+  mostrarInfoCarrera_dnf_3
+    mostrarInfoCarrera_sc_31
+      mostrarInfoCarrera_sc_311 -> mostrarInfoCarrera_tc_311
+      mostrarInfoCarrera_sc_312 -> mostrarInfoCarrera_tc_312
+      mostrarInfoCarrera_sc_313 -> mostrarInfoCarrera_tc_313
+    mostrarInfoCarrera_sc_32
+      mostrarInfoCarrera_sc_321 -> mostrarInfoCarrera_tc_321
+      mostrarInfoCarrera_sc_322 -> mostrarInfoCarrera_tc_322
+      mostrarInfoCarrera_sc_323 -> mostrarInfoCarrera_tc_323
+    mostrarInfoCarrera_sc_33
+      mostrarInfoCarrera_sc_331 -> mostrarInfoCarrera_tc_331
+      mostrarInfoCarrera_sc_332 -> mostrarInfoCarrera_tc_332
+      mostrarInfoCarrera_sc_333 -> mostrarInfoCarrera_tc_333
