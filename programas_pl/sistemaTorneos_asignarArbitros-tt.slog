@@ -1,0 +1,81 @@
+asignarArbitros_ts_121(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _21718 &
+  dom(NadadoresInscriptos,_21718) &
+  dec(_21718,set(t_carrera)) &
+  Carrera nin _21738 &
+  dom(ArbitrosAsignados,_21738) &
+  dec(_21738,set(t_carrera)) &
+  ArbitrosAsignados={} &
+  {[Carrera,Arbitros]}neq{} &
+  ArbitrosAsignados={}.
+
+asignarArbitros_tc_121(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n1 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={} &
+  Arbitros={t_arbitro:n0}.
+
+asignarArbitros_ts_142(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _21718 &
+  dom(NadadoresInscriptos,_21718) &
+  dec(_21718,set(t_carrera)) &
+  Carrera nin _21738 &
+  dom(ArbitrosAsignados,_21738) &
+  dec(_21738,set(t_carrera)) &
+  ArbitrosAsignados neq {} &
+  {[Carrera,Arbitros]}neq{} &
+  disj(ArbitrosAsignados,{[Carrera,Arbitros]}) &
+  ArbitrosAsignados={_22260} &
+  dec(_22260,[t_carrera,set(t_arbitro)]).
+
+asignarArbitros_tc_142(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n3}]} &
+  Arbitros={t_arbitro:n2}.
+
+asignarArbitros_ts_143(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera nin _21718 &
+  dom(NadadoresInscriptos,_21718) &
+  dec(_21718,set(t_carrera)) &
+  Carrera nin _21738 &
+  dom(ArbitrosAsignados,_21738) &
+  dec(_21738,set(t_carrera)) &
+  ArbitrosAsignados neq {} &
+  {[Carrera,Arbitros]}neq{} &
+  disj(ArbitrosAsignados,{[Carrera,Arbitros]}) &
+  ArbitrosAsignados={_22260,_22326/_22328} &
+  _22260 neq _22326 &
+  dec([_22260,_22326],[t_carrera,set(t_arbitro)]) &
+  dec(_22328,set([t_carrera,set(t_arbitro)])).
+
+asignarArbitros_tc_143(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  NadadoresInscriptos={} &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n4}],[t_carrera:n2,{t_arbitro:n5}]} &
+  Arbitros={t_arbitro:n3}.
+
+asignarArbitros_ts_22(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera in _21930 &
+  dom(ArbitrosAsignados,_21930) &
+  dec(_21930,set(t_carrera)) &
+  ArbitrosAsignados={_22260} &
+  dec(_22260,[t_carrera,set(t_arbitro)]).
+
+asignarArbitros_tc_22(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n1 &
+  ArbitrosAsignados={[t_carrera:n1,{t_arbitro:n0}]}.
+
+asignarArbitros_ts_23(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera in _21930 &
+  dom(ArbitrosAsignados,_21930) &
+  dec(_21930,set(t_carrera)) &
+  ArbitrosAsignados={_22260,_22326/_22328} &
+  _22260 neq _22326 &
+  dec([_22260,_22326],[t_carrera,set(t_arbitro)]) &
+  dec(_22328,set([t_carrera,set(t_arbitro)])).
+
+asignarArbitros_tc_23(Arbitros,Carrera,NadadoresInscriptos,ArbitrosAsignados) :-
+  Carrera=t_carrera:n0 &
+  ArbitrosAsignados={[t_carrera:n0,{t_arbitro:n2}],[t_carrera:n1,{t_arbitro:n3}]}.
+

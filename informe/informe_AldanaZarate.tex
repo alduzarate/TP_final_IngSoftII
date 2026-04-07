@@ -443,6 +443,8 @@ los casos de prueba generados, pude observar que hay algunos que no cumplen con 
   prunett.
   applysc(inscribirNadador_dnf_4, ArbitrosAsignados).
   prunett.
+  gentc.
+  writetc.
   exporttt.
 \end{verbatim}
 \end{footnotesize}
@@ -473,10 +475,44 @@ Entre cada técnica se aplicó \verb|prunett| para podar las hojas insatisfacibl
 
 
 \subsection*{Operación asignarArbitros}
+A continuación se deja la secuencia de comandos utilizados para obtener los casos de prueba.
+Los mismos se pueden encontrar en el archivo \verb|sistemaTorneos_asignarArbitros-tt.slog|.
 
+\subsubsection*{Comandos utilizados}
 
+\begin{verbatim}
+  ttf(sistemaTorneos).
+  applydnf(asignarArbitros(Arbitros, Carrera)).
+  applysp(asignarArbitros_dnf_1, un(ArbitrosAsignados, {[Carrera, Arbitros]}, ArbitrosAsignados_)).
+  prunett.
+  applysc(asignarArbitros_vis, ArbitrosAsignados).
+  prunett.
+  gentc.
+  writetc.
+  exporttt.
+\end{verbatim}
+
+En esta operación se aplicó la táctica FND, la cual creó un árbol con dos nodos, una para
+cada suboperación. Luego se aplicó la táctica SP sobre el nodo de asignación
+exitosa de árbitros, para testear el operador de unión. Finalmente se aplicó la táctica
+de SC en todo el árbol sobre el conjunto {\fontfamily{pcr}\selectfont ArbitrosAsignados},
+el cual es el que manipula la operación.
 
 \subsection*{Operación mostrarInfoCarrera}
+
+A continuación se deja la secuencia de comandos utilizados para obtener los casos de prueba.
+Los mismos se pueden encontrar en el archivo \verb|sistemaTorneos_mostrarInfoCarrera-tt.slog|.
+
+\subsubsection*{Comandos utilizados}
+
+\begin{verbatim}
+  ttf(sistemaTorneos).
+  applydnf(mostrarInfoCarrera(Carrera)).
+
+  gentc.
+  writetc.
+  exporttt.
+\end{verbatim}
 
 \end{document}
 

@@ -386,14 +386,22 @@ inscribirNadador_vis
     inscribirNadador_sc_42 -> inscribirNadador_tc_42
     inscribirNadador_sc_43 -> inscribirNadador_tc_43
 
-writetc.
 
 exporttt.
 
 ---> Operacion asignarArbitros:
 ttf(sistemaTorneos).
 
-
+asignarArbitros_vis
+  asignarArbitros_dnf_1
+    asignarArbitros_sp_12
+      asignarArbitros_sc_121 -> asignarArbitros_tc_121
+    asignarArbitros_sp_14
+      asignarArbitros_sc_142 -> asignarArbitros_tc_142
+      asignarArbitros_sc_143 -> asignarArbitros_tc_143
+  asignarArbitros_dnf_2
+    asignarArbitros_sc_22 -> asignarArbitros_tc_22
+    asignarArbitros_sc_23 -> asignarArbitros_tc_23
 
 
 
